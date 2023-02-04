@@ -17,7 +17,8 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "regenerator-runtime": "^0.13.7",
-    "source-map-support": "^0.5.19"
+    "source-map-support": "^0.5.19",
+    "use-google-sheets": "^2.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",

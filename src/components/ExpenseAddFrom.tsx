@@ -1,9 +1,18 @@
 import React, { useRef } from 'react';
+import useGoogleSheets from 'use-google-sheets';
 
 export default function ExpenseAddFrom() {
     const expenseName = useRef();
     const expenseValue = useRef();
     const expenseDate = useRef();
+
+    // const apiKey = process.env.GOOGLE_API_KEY || '';
+    // const sheetId = process.env.GOOGLE_SHEETS_URL || '';
+
+    const { data, loading, error } = useGoogleSheets({
+        apiKey: '',
+        sheetId: '',
+    })
 
     return (
         <>
@@ -21,6 +30,9 @@ export default function ExpenseAddFrom() {
                 <input ref={expenseDate} type="text" />
             </div>
             <button>Add expense</button>
+            <div>
+                {console.log(`error: ${error}`)}
+            </div>
         </>
     )
   }
