@@ -1,17 +1,22 @@
 import React, { useRef } from 'react';
 import useGoogleSheets from 'use-google-sheets';
+import useConfig from "./useConfig";
 
 export default function ExpenseAddFrom() {
     const expenseName = useRef();
     const expenseValue = useRef();
     const expenseDate = useRef();
 
-    // const apiKey = process.env.GOOGLE_API_KEY || '';
-    // const sheetId = process.env.GOOGLE_SHEETS_URL || '';
+    const config = useConfig()
+
+    const apiKey = config.app.GOOGLE_API_KEY || '';
+    const sheetId = config.app.GOOGLE_SHEETS_URL || '';
+    const sheetName = config.app.SHEET_NAME || '';
 
     const { data, loading, error } = useGoogleSheets({
-        apiKey: '',
-        sheetId: '',
+        apiKey,
+        sheetId,
+        sheetsOptions: [{ id: sheetName }]
     })
 
     return (
@@ -32,6 +37,8 @@ export default function ExpenseAddFrom() {
             <button>Add expense</button>
             <div>
                 {console.log(`error: ${error}`)}
+                {JSON.stringify(data)}
+                {console.log(`loading: ${loading}`)}
             </div>
         </>
     )

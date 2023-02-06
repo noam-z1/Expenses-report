@@ -46,6 +46,7 @@ functions:
   serve:
     # Any web request regardless of path or method will be handled by a single Lambda function
     handler: handler.serve
+    environment: ${file(env.json)}
     events:
       - http:
           path: /
