@@ -13,3 +13,6 @@ dist
 
 # Other
 .DS_Store
+
+# Private data
+private-key.json
