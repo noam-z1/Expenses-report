@@ -71,6 +71,33 @@ button[type="submit"]:hover {
   background-color: #3399cc;
 }
 
+select {
+  width: 85%;
+  padding: 12px;
+  font-size: 18px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-repeat: no-repeat, repeat;
+  background-position: right .7em top 50%, 0 0;
+  background-size: .65em auto, 100%;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+select:hover {
+  border-color: #007CB2;
+}
+
+select:focus {
+  border-color: #007CB2;
+  box-shadow: 0 0 1px #007CB2;
+}
+
 .error {
   color: red;
   margin-bottom: 16px;

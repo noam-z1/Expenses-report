@@ -10,13 +10,15 @@ import ExpenseAddFrom from "./components/ExpenseAddFrom";
  */
 export default function App() {
   const config = useConfig();
+
+  const expenseCategories: string[] = [];
   return (
     <div className="App">
       <header className="App-header">
         <h1 className="App-title">Noam & Roni's {config.app.TITLE}</h1>
       </header>
       <form id="expenses-form">
-        <ExpenseAddFrom />
+        <ExpenseAddFrom expenseCategories={expenseCategories}/>
       </form>
     </div>
   );
