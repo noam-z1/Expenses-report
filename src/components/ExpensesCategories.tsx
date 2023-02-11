@@ -17,7 +17,7 @@ export default function ExpensesCategories({ expenseCategories }: { expenseCateg
             <label>Category</label>
             <select id="category">
                 {expenseCategories.map(category => {
-                    return <option value={category}>{category}</option>
+                    return <option key={category} value={category}>{category}</option>
                 })}
             </select>
         </>
