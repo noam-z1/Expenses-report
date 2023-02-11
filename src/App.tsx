@@ -1,6 +1,6 @@
 import "./App.css";
 
-import * as React from "react";
+import React, { useState, useEffect } from 'react';
 
 import useConfig from "./components/useConfig";
 import ExpenseAddFrom from "./components/ExpenseAddFrom";
@@ -10,8 +10,12 @@ import ExpenseAddFrom from "./components/ExpenseAddFrom";
  */
 export default function App() {
   const config = useConfig();
+  const [expenseCategories, getExpensesCategories] = useState(Array<string>());
 
-  const expenseCategories: string[] = [];
+  useEffect(() => {
+    getExpensesCategories(() => ['aa', 'bb'])
+  }, [])
+
   return (
     <div className="App">
       <header className="App-header">
