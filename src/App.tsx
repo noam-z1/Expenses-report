@@ -13,7 +13,13 @@ export default function App() {
   const [expenseCategories, getExpensesCategories] = useState(Array<string>());
 
   useEffect(() => {
-    getExpensesCategories(() => ['aa', 'bb'])
+    async function asyncGetExpensesCategories(){
+      const results = ['aa', 'bb'];
+
+      getExpensesCategories(results);
+    };
+
+    asyncGetExpensesCategories();
   }, [])
 
   return (
