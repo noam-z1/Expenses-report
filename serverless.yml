@@ -43,6 +43,14 @@ plugins:
   - serverless-s3-deploy
 
 functions:
+  getCategories:
+    handler: src/backend/GetCategories.getCategories
+    environment: ${file(env.json)}
+    events:
+      - http:
+          path: /getCategories
+          method: get
+          cors: true
   serve:
     # Any web request regardless of path or method will be handled by a single Lambda function
     handler: handler.serve
@@ -50,10 +58,6 @@ functions:
     events:
       - http:
           path: /
-          method: any
-          cors: true
-      - http:
-          path: /{any+}
           method: any
           cors: true
 
