@@ -16,11 +16,13 @@ export const getCategories = async (event: APIGatewayEvent, _context: Context): 
       },
     );
 
-    results = response.data.values.map((category: string[]) => {
+    const resultsUnfiltered = response.data.values.map((category: string[]) => {
       if (category.length > 0) {
         return category[0];
       }
     });
+
+    results = resultsUnfiltered.filter((category: string) => category);
   } catch (err) {
     console.log(err);
     return {
