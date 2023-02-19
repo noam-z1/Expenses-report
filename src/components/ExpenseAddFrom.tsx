@@ -2,9 +2,9 @@ import React, { useRef, useState } from 'react';
 import ExpensesCategories from './ExpensesCategories';
 
 export default function ExpenseAddFrom({ expenseCategories }: { expenseCategories: string[] }) {
-    const expenseName = useRef();
-    const expenseValue = useRef();
-    const expenseDate = useRef();
+    const expenseName = useRef<HTMLInputElement>(null);
+    const expenseValue = useRef<HTMLInputElement>(null);
+    const expenseDate = useRef<HTMLInputElement>(null);
     const [expensesCategoriesValue, setExpenseCategoryChoice] = useState('');
 
     return (
