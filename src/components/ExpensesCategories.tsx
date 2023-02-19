@@ -1,21 +1,26 @@
 import React, { useState } from 'react';
 
-export default function ExpensesCategories({ expenseCategories }: { expenseCategories: string[] }) {
-
-    const [expensesCategoriesValue, setExpenseCategoryChoice] = useState('');
+export default function ExpensesCategories({
+    expenseCategories,
+    expensesCategoriesValue,
+    setExpenseCategoryChoice
+}: {
+    expenseCategories: string[],
+    expensesCategoriesValue: string,
+    setExpenseCategoryChoice: (str: string) => void
+}) {
 
     const HandleChange = (e: any) => {
-
         setExpenseCategoryChoice(e.target.value);
     }
 
     if (expenseCategories.length == 0) {
         return (
             <>
-            <label>Category</label>
-            <select id="category"  value={expensesCategoriesValue} onChange={HandleChange}>
-                <option value="">Loading...</option>
-            </select>
+                <label>Category</label>
+                <select id="category" value={expensesCategoriesValue} onChange={HandleChange}>
+                    <option value="">Loading...</option>
+                </select>
             </>
         )
     }
@@ -23,7 +28,7 @@ export default function ExpensesCategories({ expenseCategories }: { expenseCateg
     return (
         <>
             <label>Category</label>
-            <select id="category" value={expensesCategoriesValue}  onChange={HandleChange}>
+            <select id="category" value={expensesCategoriesValue} onChange={HandleChange}>
                 <option value="">Please choose a category</option>
                 {expenseCategories.map(category => {
                     return <option key={category} value={category}>{category}</option>
