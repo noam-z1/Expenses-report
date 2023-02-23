@@ -7,6 +7,24 @@ export default function ExpenseAddFrom({ expenseCategories }: { expenseCategorie
     const expenseDate = useRef<HTMLInputElement>(null);
     const [expensesCategoriesValue, setExpenseCategoryChoice] = useState('');
 
+    function sendForm(e: Event) {
+        e.preventDefault();
+        let name = expenseName?.current?.value || '';
+        let value = expenseValue?.current?.value || '';
+        let date = expenseDate?.current?.value || '';
+        let category = expensesCategoriesValue || '';
+        console.log(name, value, date, category)
+
+        if (name === '' || value === '' || date === '' || category === '') {
+            return;
+        }
+
+        expenseName.current.value = null;
+        expenseValue.current.value = null;
+        expenseDate.current.value = null;
+        setExpenseCategoryChoice('');
+    }
+
     return (
         <>
             <h1> My Form</h1>
@@ -25,7 +43,7 @@ export default function ExpenseAddFrom({ expenseCategories }: { expenseCategorie
                 <label>Date</label>
                 <input ref={expenseDate} type="text" />
             </div>
-            <button>Add expense</button>
+            <button onClick={sendForm}>Add expense</button>
         </>
     )
 }
