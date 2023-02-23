@@ -1,3 +1,4 @@
+import moment from 'moment';
 import React, { useRef, useState } from 'react';
 import ExpensesCategories from './ExpensesCategories';
 
@@ -13,15 +14,14 @@ export default function ExpenseAddFrom({ expenseCategories }: { expenseCategorie
         let value = expenseValue?.current?.value || '';
         let date = expenseDate?.current?.value || '';
         let category = expensesCategoriesValue || '';
-        console.log(name, value, date, category)
 
-        if (name === '' || value === '' || date === '' || category === '') {
+        if (name === '' || value === '' || category === '') {
             return;
         }
 
         expenseName.current.value = null;
         expenseValue.current.value = null;
-        expenseDate.current.value = null;
+        expenseDate.current.value = moment().format("YYYY-MM-DD");
         setExpenseCategoryChoice('');
     }
 
@@ -41,7 +41,7 @@ export default function ExpenseAddFrom({ expenseCategories }: { expenseCategorie
             </div>
             <div className="expense-input" id="expense-value">
                 <label>Date</label>
-                <input ref={expenseDate} type="text" />
+                <input ref={expenseDate} type="date" min="2023-01-01" defaultValue={moment().format("YYYY-MM-DD")} />
             </div>
             <button onClick={sendForm}>Add expense</button>
         </>

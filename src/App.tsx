@@ -15,7 +15,7 @@ export default function App() {
 
   let results: string[] = [];
   useEffect(() => {
-    async function asyncGetExpensesCategories(){
+    async function asyncGetExpensesCategories() {
       try {
         const response = await axios.get('/getCategories');
 
@@ -35,9 +35,9 @@ export default function App() {
       <header className="App-header">
         <h1 className="App-title">Noam & Roni's {config.app.TITLE}</h1>
       </header>
-      <form id="expenses-form">
-        <ExpenseAddFrom expenseCategories={expenseCategories}/>
-      </form>
+      <div id="expenses-form">
+        <ExpenseAddFrom expenseCategories={expenseCategories} />
+      </div>
     </div>
   );
 }
