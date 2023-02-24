@@ -17,7 +17,11 @@ export default function App() {
   useEffect(() => {
     async function asyncGetExpensesCategories() {
       try {
-        const response = await axios.get('/getCategories');
+        const response = await axios.get(`${config.app.URL}/getCategories`, {
+          headers: {
+            "Content-Type": "text/html",
+          },
+        });
 
         results = response.data.split(',')
       } catch (err) {
