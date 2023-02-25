@@ -51,6 +51,14 @@ functions:
           path: /getCategories
           method: get
           cors: true
+  addExpense:
+    handler: src/backend/AddExpense.addExpense
+    environment: ${file(env.json)}
+    events:
+      - http:
+          path: /addExpense
+          method: post
+          cors: true
   serve:
     # Any web request regardless of path or method will be handled by a single Lambda function
     handler: handler.serve
