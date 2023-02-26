@@ -36,6 +36,31 @@ export default function App() {
     asyncGetExpensesCategories();
   }, [])
 
+  useEffect(() => {
+    async function updateGoogleSheets(expense: Expense) {
+      try {
+        const response = await axios.post(
+          `${config.app.URL}/addExpense`,
+          { ...expense },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            }
+          }
+        );
+        const { oldValue, newValue } = response.data;
+      } catch (err) {
+        console.log(JSON.stringify(err))
+      }
+
+      getExpensesCategories(results);
+    };
+    if (Object.keys(addExpenseRequest).length > 0) {
+      updateGoogleSheets(addExpenseRequest)
+    };
+
+  }, [addExpenseRequest])
+
   return (
     <div className="App">
       <header className="App-header">

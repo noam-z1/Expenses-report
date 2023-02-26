@@ -49,7 +49,7 @@ export default function ExpenseAddFrom(
             </div>
             <div className="expense-input" id="expense-value">
                 <label>Sum</label>
-                <input type="number" ref={expenseValue} />
+                <input type="number" min="0" ref={expenseValue} />
             </div>
             <div className="expense-input" id="expense-value">
                 <label>Date</label>
