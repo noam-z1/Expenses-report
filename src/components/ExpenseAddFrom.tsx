@@ -1,8 +1,12 @@
 import moment from 'moment';
-import React, { useRef, useState } from 'react';
+import React, { Dispatch, SetStateAction, useRef, useState } from 'react';
+import { Expense } from '../models/expense';
 import ExpensesCategories from './ExpensesCategories';
 
-export default function ExpenseAddFrom({ expenseCategories }: { expenseCategories: string[] }) {
+export default function ExpenseAddFrom(
+    { expenseCategories, getExpenseRequest }:
+        { expenseCategories: string[], getExpenseRequest: Dispatch<SetStateAction<Expense[]>> }
+) {
     const expenseName = useRef<HTMLInputElement>(null);
     const expenseValue = useRef<HTMLInputElement>(null);
     const expenseDate = useRef<HTMLInputElement>(null);
@@ -18,9 +22,17 @@ export default function ExpenseAddFrom({ expenseCategories }: { expenseCategorie
         if (name === '' || value === '' || category === '') {
             return;
         }
+        const expense: Expense = {
+            name,
+            value: parseFloat(value),
+            category,
+            date
+        };
 
-        expenseName.current.value = null;
-        expenseValue.current.value = null;
+        getExpenseRequest([expense]);
+
+        expenseName.current.value = '';
+        expenseValue.current.value = '';
         expenseDate.current.value = moment().format("YYYY-MM-DD");
         setExpenseCategoryChoice('');
     }
@@ -30,18 +42,18 @@ export default function ExpenseAddFrom({ expenseCategories }: { expenseCategorie
             <h1> My Form</h1>
             <div className="expense-input" id="expense-name">
                 <label>Name</label>
-                <input ref={expenseName} type="text" />
+                <input type="text" ref={expenseName} />
             </div>
             <div className="expense-input" id="expense-category">
                 <ExpensesCategories expenseCategories={expenseCategories} expensesCategoriesValue={expensesCategoriesValue} setExpenseCategoryChoice={setExpenseCategoryChoice} />
             </div>
             <div className="expense-input" id="expense-value">
                 <label>Sum</label>
-                <input ref={expenseValue} type="text" />
+                <input type="number" ref={expenseValue} />
             </div>
             <div className="expense-input" id="expense-value">
                 <label>Date</label>
-                <input ref={expenseDate} type="date" min="2023-01-01" defaultValue={moment().format("YYYY-MM-DD")} />
+                <input type="date" ref={expenseDate} min="2023-01-01" defaultValue={moment().format("YYYY-MM-DD")} />
             </div>
             <button onClick={sendForm}>Add expense</button>
         </>
