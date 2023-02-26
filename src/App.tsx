@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import useConfig from "./components/useConfig";
 import ExpenseAddFrom from "./components/ExpenseAddFrom";
 import axios from "axios";
+import { Expense } from "./models/expense";
 
 /**
  * Our Web Application
@@ -12,6 +13,7 @@ import axios from "axios";
 export default function App() {
   const config = useConfig();
   const [expenseCategories, getExpensesCategories] = useState(Array<string>());
+  const [addExpenseRequest, getExpenseRequest] = useState({} as Expense);
 
   let results: string[] = [];
   useEffect(() => {
@@ -40,7 +42,7 @@ export default function App() {
         <h1 className="App-title">Noam & Roni's {config.app.TITLE}</h1>
       </header>
       <div id="expenses-form">
-        <ExpenseAddFrom expenseCategories={expenseCategories} />
+        <ExpenseAddFrom expenseCategories={expenseCategories} getExpenseRequest={getExpenseRequest} />
       </div>
     </div>
   );

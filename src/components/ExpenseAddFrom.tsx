@@ -5,7 +5,7 @@ import ExpensesCategories from './ExpensesCategories';
 
 export default function ExpenseAddFrom(
     { expenseCategories, getExpenseRequest }:
-        { expenseCategories: string[], getExpenseRequest: Dispatch<SetStateAction<Expense[]>> }
+        { expenseCategories: string[], getExpenseRequest: Dispatch<SetStateAction<Expense>> }
 ) {
     const expenseName = useRef<HTMLInputElement>(null);
     const expenseValue = useRef<HTMLInputElement>(null);
@@ -14,10 +14,10 @@ export default function ExpenseAddFrom(
 
     function sendForm(e: Event) {
         e.preventDefault();
-        let name = expenseName?.current?.value || '';
-        let value = expenseValue?.current?.value || '';
-        let date = expenseDate?.current?.value || '';
-        let category = expensesCategoriesValue || '';
+        let name = expenseName.current!.value ?? '';
+        let value = expenseValue.current!.value ?? '';
+        let date = expenseDate.current!.value ?? '';
+        let category = expensesCategoriesValue ?? '';
 
         if (name === '' || value === '' || category === '') {
             return;
@@ -29,11 +29,11 @@ export default function ExpenseAddFrom(
             date
         };
 
-        getExpenseRequest([expense]);
+        getExpenseRequest(expense);
 
-        expenseName.current.value = '';
-        expenseValue.current.value = '';
-        expenseDate.current.value = moment().format("YYYY-MM-DD");
+        expenseName.current!.value = '';
+        expenseValue.current!.value = '';
+        expenseDate.current!.value = moment().format("YYYY-MM-DD");
         setExpenseCategoryChoice('');
     }
 

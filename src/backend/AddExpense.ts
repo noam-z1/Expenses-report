@@ -7,12 +7,12 @@ async function getSheet(): Promise<GoogleSpreadsheetWorksheet> {
   if (sheet) return sheet;
   const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEETS_URL);
   await doc.useServiceAccountAuth({
-    client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL || "",
-    private_key: process.env.GOOGLE_SHEETS_PRIVATE_API_KEY || "",
+    client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL ?? "",
+    private_key: process.env.GOOGLE_SHEETS_PRIVATE_API_KEY ?? "",
   });
   await doc.loadInfo();
 
-  const sheet_name = process.env.SPREADSHEET_NAME || "";
+  const sheet_name = process.env.SPREADSHEET_NAME ?? "";
   sheet = doc.sheetsByTitle[sheet_name];
   return sheet;
 }
