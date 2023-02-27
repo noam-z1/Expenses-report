@@ -12,7 +12,7 @@ export default function ExpenseAddFrom(
     const expenseValue = useRef<HTMLInputElement>(null);
     const expenseDate = useRef<HTMLInputElement>(null);
 
-    const [expenseCategories, setExpensesCategories] = useState(Array<string>()); // ToDo: change name
+    const [expenseCategories, setExpensesCategories] = useState(Array<string>());
     const [expensesCategoriesValue, setExpenseCategoryChoice] = useState('');
     const config = useConfig();
 

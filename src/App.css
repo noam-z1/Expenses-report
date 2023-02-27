@@ -38,6 +38,17 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   float: left;
+  height: 450px;
+}
+
+#expense-details {
+  width: 40%;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  float: left;
+  height: 450px;
 }
 
 label {
@@ -45,7 +56,7 @@ label {
   margin-bottom: 8px;
 }
 
-input{
+input, select{
   width: 80%;
   border: 1px solid #ccc;
   border-radius: 4px;
