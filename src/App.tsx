@@ -12,10 +12,10 @@ import { Expense } from "./models/expense";
  */
 export default function App() {
   const config = useConfig();
-  const [addExpenseRequest, getExpenseRequest] = useState({} as Expense);
+  const [addExpenseRequest, setAddExpenseRequest] = useState({} as Expense);
 
   useEffect(() => {
-    async function updateGoogleSheets(expense: Expense) {
+    async function updateGoogleSheets(expense: Expense): Promise<void> {
       try {
         const response = await axios.post(
           `${config.app.URL}/addExpense`,
@@ -32,6 +32,7 @@ export default function App() {
       }
 
     };
+
     if (Object.keys(addExpenseRequest).length > 0) {
       updateGoogleSheets(addExpenseRequest)
     };
@@ -44,7 +45,7 @@ export default function App() {
         <h1 className="App-title">Noam & Roni's {config.app.TITLE}</h1>
       </header>
       <div id="expenses-form">
-        <ExpenseAddFrom getExpenseRequest={getExpenseRequest} />
+        <ExpenseAddFrom getExpenseRequest={setAddExpenseRequest} />
       </div>
     </div>
   );

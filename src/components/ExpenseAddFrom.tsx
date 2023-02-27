@@ -6,7 +6,7 @@ import ExpensesCategories from './ExpensesCategories';
 import useConfig from './useConfig';
 
 export default function ExpenseAddFrom(
-    { getExpenseRequest }: { getExpenseRequest: Dispatch<SetStateAction<Expense>> }
+    { setAddExpenseRequest }: { setAddExpenseRequest: Dispatch<SetStateAction<Expense>> }
 ) {
     const expenseName = useRef<HTMLInputElement>(null);
     const expenseValue = useRef<HTMLInputElement>(null);
@@ -52,7 +52,7 @@ export default function ExpenseAddFrom(
             date
         };
 
-        getExpenseRequest(expense);
+        setAddExpenseRequest(expense);
 
         expenseName.current!.value = '';
         expenseValue.current!.value = '';
