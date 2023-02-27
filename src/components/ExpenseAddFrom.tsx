@@ -1,16 +1,39 @@
+import axios from 'axios';
 import moment from 'moment';
-import React, { Dispatch, SetStateAction, useRef, useState } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 import { Expense } from '../models/expense';
 import ExpensesCategories from './ExpensesCategories';
+import useConfig from './useConfig';
 
 export default function ExpenseAddFrom(
-    { expenseCategories, getExpenseRequest }:
-        { expenseCategories: string[], getExpenseRequest: Dispatch<SetStateAction<Expense>> }
+    { getExpenseRequest }: { getExpenseRequest: Dispatch<SetStateAction<Expense>> }
 ) {
     const expenseName = useRef<HTMLInputElement>(null);
     const expenseValue = useRef<HTMLInputElement>(null);
     const expenseDate = useRef<HTMLInputElement>(null);
+
+    const [expenseCategories, setExpensesCategories] = useState(Array<string>()); // ToDo: change name
     const [expensesCategoriesValue, setExpenseCategoryChoice] = useState('');
+    const config = useConfig();
+
+    let results: string[] = [];
+    useEffect(() => {
+        async function asyncGetExpensesCategories() {
+            try {
+                const response = await axios.get(`${config.app.URL}/getCategories`, {
+                    headers: {
+                        "Content-Type": "text/html",
+                    },
+                });
+                results = response.data.split(',')
+            } catch (err) {
+                console.log(JSON.stringify(err))
+            }
+            setExpensesCategories(results);
+        };
+
+        asyncGetExpensesCategories();
+    }, [])
 
     function sendForm(e: Event) {
         e.preventDefault();
