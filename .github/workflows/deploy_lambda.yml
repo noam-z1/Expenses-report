@@ -2,25 +2,27 @@ name: DeployLambda
 
 on:
   push:
-    branches:    
+    branches:
       - deploy_via_github_actions
 
 jobs:
   deploy_lambda:
     runs-on: ubuntu-latest
+
     strategy:
       matrix:
         node-version: [14.x, 16.x, 18.x]
+
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
       - run: npm ci
-      # - name: Serverless Deploy
-      #   uses: teakowadeprecated/Serverless-Action@v2.4.0
-      #   with:
-      #     # arguments for sls command
-      #     args: deploy
+        # - name: Serverless Deploy
+        #   uses: teakowadeprecated/Serverless-Action@v2.4.0
+        #   with:
+        #     # arguments for sls command
+        #     args: deploy
