@@ -16,6 +16,8 @@ jobs:
         with:
           node-version: 14.x
           cache: "npm"
+      - name: Upgrade NPM
+        run: npm install -g npm
       - run: npm ci
       - name: serverless deploy
         uses: serverless/github-action@v3.1
