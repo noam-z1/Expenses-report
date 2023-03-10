@@ -2,8 +2,8 @@ name: DeployLambda
 
 on:
   push:
-    branches:
-    - master
+    branches:    
+      - deploy_via_github_actions
 
 jobs:
   deploy_lambda:
