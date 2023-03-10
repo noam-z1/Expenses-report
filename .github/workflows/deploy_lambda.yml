@@ -20,8 +20,8 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
       - run: npm ci
-      - name: Serverless Deploy
-        uses: teakowadeprecated/Serverless-Action@v2.4.0
-        with:
-          # arguments for sls command
-          args: deploy
+      # - name: Serverless Deploy
+      #   uses: teakowadeprecated/Serverless-Action@v2.4.0
+      #   with:
+      #     # arguments for sls command
+      #     args: deploy
