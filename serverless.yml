@@ -43,7 +43,6 @@ plugins:
 functions:
   getCategories:
     handler: src/backend/GetCategories.getCategories
-    environment: ${file(env.json)}
     events:
       - http:
           path: /getCategories
@@ -51,7 +50,6 @@ functions:
           cors: true
   addExpense:
     handler: src/backend/AddExpense.addExpense
-    environment: ${file(env.json)}
     events:
       - http:
           path: /addExpense
@@ -60,7 +58,6 @@ functions:
   serve:
     # Any web request regardless of path or method will be handled by a single Lambda function
     handler: handler.serve
-    environment: ${file(env.json)}
     events:
       - http:
           path: /
