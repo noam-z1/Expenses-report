@@ -1,9 +1,9 @@
 name: DeployLambda
 
 on:
-  push:
+  pull_request:
     branches:
-      - deploy_via_github_actions
+      - typescript
 
 jobs:
   deploy_lambda:
