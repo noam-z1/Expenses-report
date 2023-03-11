@@ -44,8 +44,6 @@ functions:
   getCategories:
     handler: src/backend/GetCategories.getCategories
     environment:
-      GOOGLE_SERVICE_ACCOUNT_EMAIL: ${env:GOOGLE_SERVICE_ACCOUNT_EMAIL}
-      GOOGLE_SHEETS_PRIVATE_API_KEY: ${env:GOOGLE_SHEETS_PRIVATE_API_KEY}
       GOOGLE_SHEETS_PRIVATE_KEY: ${env:GOOGLE_SHEETS_PRIVATE_KEY}
       GOOGLE_SHEETS_URL: ${env:GOOGLE_SHEETS_URL}
       SPREADSHEET_NAME: ${env:SPREADSHEET_NAME}
@@ -56,6 +54,11 @@ functions:
           cors: true
   addExpense:
     handler: src/backend/AddExpense.addExpense
+    environment:
+      GOOGLE_SERVICE_ACCOUNT_EMAIL: ${env:GOOGLE_SERVICE_ACCOUNT_EMAIL}
+      GOOGLE_SHEETS_PRIVATE_API_KEY: ${env:GOOGLE_SHEETS_PRIVATE_API_KEY}
+      SPREADSHEET_NAME: ${env:SPREADSHEET_NAME}
+      GOOGLE_SHEETS_URL: ${env:GOOGLE_SHEETS_URL}
     events:
       - http:
           path: /addExpense
