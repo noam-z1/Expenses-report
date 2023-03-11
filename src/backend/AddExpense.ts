@@ -64,7 +64,6 @@ async function updateCell(
 }
 
 export const addExpense = async (event: APIGatewayEvent, _context: Context): Promise<APIGatewayProxyResultV2> => {
-  console.log(event);
   if (!event.body) {
     return {
       statusCode: 400,
