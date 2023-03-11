@@ -30,7 +30,7 @@ async function getRelevantCell(category: string, date: string): Promise<number[]
   await sheet.saveUpdatedCells();
 
   const [year, month, _] = date.split("-");
-  let col = 1 + 13 * (parseInt(year) - 2022) + parseInt(month);
+  const col = 1 + 13 * (parseInt(year) - 2022) + parseInt(month);
   return [row, col];
 }
 
@@ -54,7 +54,7 @@ async function updateCell(
   } else {
     initialValue = 0;
   }
-  let newValue = initialValue + addition;
+  const newValue = initialValue + addition;
   cell.value = newValue;
   await sheet.saveUpdatedCells();
   return {
@@ -77,8 +77,7 @@ export const addExpense = async (event: APIGatewayEvent, _context: Context): Pro
   const { value, category, date } = JSON.parse(event.body);
   try {
     const [row, col] = await getRelevantCell(category, date);
-    console.log(row, col);
-    let { initialValue, newValue } = await updateCell(row, col, parseFloat(value));
+    const { initialValue, newValue } = await updateCell(row, col, parseFloat(value));
 
     return {
       statusCode: 200,

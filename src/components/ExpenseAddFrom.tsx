@@ -37,10 +37,10 @@ export default function ExpenseAddFrom(
 
     function sendForm(e: Event) {
         e.preventDefault();
-        let name = expenseName.current!.value ?? '';
-        let value = expenseValue.current!.value ?? '';
-        let date = expenseDate.current!.value ?? '';
-        let category = expensesCategoriesValue ?? '';
+        const name = expenseName.current!.value ?? '';
+        const value = expenseValue.current!.value ?? '';
+        const date = expenseDate.current!.value ?? '';
+        const category = expensesCategoriesValue ?? '';
 
         if (name === '' || value === '' || category === '') {
             return;
