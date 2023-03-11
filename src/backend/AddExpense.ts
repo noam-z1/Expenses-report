@@ -64,6 +64,7 @@ async function updateCell(
 }
 
 export const addExpense = async (event: APIGatewayEvent, _context: Context): Promise<APIGatewayProxyResultV2> => {
+  console.log(event);
   if (!event.body) {
     return {
       statusCode: 400,
@@ -76,6 +77,7 @@ export const addExpense = async (event: APIGatewayEvent, _context: Context): Pro
   const { value, category, date } = JSON.parse(event.body);
   try {
     const [row, col] = await getRelevantCell(category, date);
+    console.log(row, col);
     let { initialValue, newValue } = await updateCell(row, col, parseFloat(value));
 
     return {
