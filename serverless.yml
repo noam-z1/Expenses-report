@@ -61,7 +61,7 @@ functions:
       GOOGLE_SHEETS_URL: ${env:GOOGLE_SHEETS_URL}
     events:
       - http:
-          path: /addExpense
+          path: /Expense
           method: post
           cors: true
   serve:
