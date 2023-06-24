@@ -42,7 +42,7 @@ plugins:
 
 functions:
   getCategories:
-    handler: src/backend/GetCategories.Categories
+    handler: src/backend/GetCategories.getCategories
     environment:
       GOOGLE_SHEETS_PRIVATE_KEY: ${env:GOOGLE_SHEETS_PRIVATE_KEY}
       GOOGLE_SHEETS_URL: ${env:GOOGLE_SHEETS_URL}
