@@ -42,14 +42,14 @@ plugins:
 
 functions:
   getCategories:
-    handler: src/backend/GetCategories.getCategories
+    handler: src/backend/GetCategories.Categories
     environment:
       GOOGLE_SHEETS_PRIVATE_KEY: ${env:GOOGLE_SHEETS_PRIVATE_KEY}
       GOOGLE_SHEETS_URL: ${env:GOOGLE_SHEETS_URL}
       SPREADSHEET_NAME: ${env:SPREADSHEET_NAME}
     events:
       - http:
-          path: /getCategories
+          path: /Categories
           method: get
           cors: true
   addExpense:

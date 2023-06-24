@@ -1,7 +1,7 @@
 import { APIGatewayProxyResultV2 } from "aws-lambda";
 import axios from "axios";
 
-export const getCategories = async (): Promise<APIGatewayProxyResultV2> => {
+export const Categories = async (): Promise<APIGatewayProxyResultV2> => {
   const endpointURL = "https://sheets.googleapis.com/v4/spreadsheets";
 
   let results: string[] = [];

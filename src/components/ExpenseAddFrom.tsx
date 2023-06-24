@@ -20,7 +20,7 @@ export default function ExpenseAddFrom(
     useEffect(() => {
         async function asyncGetExpensesCategories() {
             try {
-                const response = await axios.get(`${config.app.URL}/getCategories`, {
+                const response = await axios.get(`${config.app.URL}/Categories`, {
                     headers: {
                         "Content-Type": "text/html",
                     },
