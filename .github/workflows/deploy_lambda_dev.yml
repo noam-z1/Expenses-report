@@ -26,17 +26,10 @@ jobs:
       - name: Upgrade NPM
         run: npm install -g npm
       - run: npm ci
-      - name: serverless deploy --stage dev --conceal
+      - name: deploy
         uses: serverless/github-action@v3.1
         with:
-          args: deploy
+          args: deploy --stage dev --conceal
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      - name: Set endpoint URL as output
-        id: set_endpoint
-        run: echo "::set-output name=endpoint::${{ secrets.ENDPOINT_URL }}"
-
-      - name: Store endpoint URL as secret
-        run: |
-          echo ${{ steps.set_endpoint.outputs.endpoint }} >> $GITHUB_ENV
