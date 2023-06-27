@@ -21,7 +21,7 @@ export default function App() {
     async function updateGoogleSheets(expense: Expense): Promise<void> {
       try {
         const response = await axios.post(
-          `${config.app.URL}/addExpense`,
+          `${config.app.URL}/Expense`,
           { ...expense },
           {
             headers: {

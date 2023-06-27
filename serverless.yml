@@ -49,7 +49,7 @@ functions:
       SPREADSHEET_NAME: ${env:SPREADSHEET_NAME}
     events:
       - http:
-          path: /getCategories
+          path: /Categories
           method: get
           cors: true
   addExpense:
@@ -61,7 +61,7 @@ functions:
       GOOGLE_SHEETS_URL: ${env:GOOGLE_SHEETS_URL}
     events:
       - http:
-          path: /addExpense
+          path: /Expense
           method: post
           cors: true
   serve:
