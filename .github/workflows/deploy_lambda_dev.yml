@@ -1,9 +1,9 @@
-name: DeployLambda
+name: DeployLambdaDev
 
 on:
   push:
     branches:
-      - main
+      - 'feature/*'
 
 env:
   GOOGLE_SERVICE_ACCOUNT_EMAIL: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_EMAIL }}
@@ -13,7 +13,7 @@ env:
   SPREADSHEET_NAME: ${{ vars.SPREADSHEET_NAME }}
 
 jobs:
-  deploy_lambda:
+  deploy_lambda_dev:
     runs-on: ubuntu-latest
 
     steps:
@@ -26,7 +26,7 @@ jobs:
       - name: Upgrade NPM
         run: npm install -g npm
       - run: npm ci
-      - name: serverless deploy
+      - name: serverless deploy --stage dev --conceal
         uses: serverless/github-action@v3.1
         with:
           args: deploy
