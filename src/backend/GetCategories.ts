@@ -29,7 +29,7 @@ export const getCategories = async (): Promise<APIGatewayProxyResultV2> => {
       headers: {
         "Content-Type": "text/html",
       },
-      body: "Error while fetching categories!",
+      body: "Error while fetching categories",
     };
   }
   return {
