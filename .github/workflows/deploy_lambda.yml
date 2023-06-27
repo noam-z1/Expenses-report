@@ -3,7 +3,7 @@ name: DeployLambda
 on:
   push:
     branches:
-      - typescript
+      - main
 
 env:
   GOOGLE_SERVICE_ACCOUNT_EMAIL: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_EMAIL }}
