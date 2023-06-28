@@ -29,9 +29,8 @@ jobs:
       - name: serverless_deploy
         uses: serverless/github-action@v3.1
         with:
-          args: deploy --stage dev --conceal"
+          args: deploy --stage dev
+          silenceOutput: true
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      - name: Save output to file
-        run: echo "${{ steps.serverless_deploy.outputs.stdout }}" > deployment-output.txt
