@@ -77,7 +77,7 @@ export default function ExpenseAddFrom(
                 <label>Date</label>
                 <input type="date" ref={expenseDate} min="2023-01-01" defaultValue={moment().format("YYYY-MM-DD")} />
             </div>
-            <div>AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH</div>
+            <div>AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH</div>
             <button onClick={sendForm}>Add expense</button>
         </>
     )
