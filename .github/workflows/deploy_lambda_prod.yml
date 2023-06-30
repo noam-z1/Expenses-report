@@ -1,0 +1,33 @@
+name: DeployLambdaProd
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  GOOGLE_SERVICE_ACCOUNT_EMAIL: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_EMAIL }}
+  GOOGLE_SHEETS_PRIVATE_API_KEY: ${{ secrets.GOOGLE_SHEETS_PRIVATE_API_KEY }}
+  GOOGLE_SHEETS_PRIVATE_KEY: ${{ secrets.GOOGLE_SHEETS_PRIVATE_KEY }}
+  GOOGLE_SHEETS_URL: ${{ vars.GOOGLE_SHEETS_URL }}
+  SPREADSHEET_NAME: ${{ vars.SPREADSHEET_NAME }}
+
+jobs:
+  deploy_lambda:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 1.x
+          cache: "npm"
+      - name: Upgrade NPM
+        run: npm install -g npm
+      - run: npm ci
+      - name: deploy
+        run: npx serverless deploy --stage production
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
