@@ -62,6 +62,7 @@ export default function ExpenseAddFrom(
 
     return (
         <>
+            <h1> My Form</h1>
             <div className="expense-input" id="expense-name">
                 <label>Name</label>
                 <input type="text" ref={expenseName} />
@@ -77,7 +78,6 @@ export default function ExpenseAddFrom(
                 <label>Date</label>
                 <input type="date" ref={expenseDate} min="2023-01-01" defaultValue={moment().format("YYYY-MM-DD")} />
             </div>
-            <div>AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH</div>
             <button onClick={sendForm}>Add expense</button>
         </>
     )
