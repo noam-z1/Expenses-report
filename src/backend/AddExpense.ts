@@ -18,6 +18,7 @@ async function getSheet(): Promise<GoogleSpreadsheetWorksheet> {
 }
 
 async function getRelevantCell(category: string, date: string): Promise<number[]> {
+  const start_year = parseInt(process.env.FILE_START_YEAR || "2022", 2022);
   const sheet = await getSheet();
 
   await sheet.loadCells("A1:A1");
@@ -30,7 +31,7 @@ async function getRelevantCell(category: string, date: string): Promise<number[]
   await sheet.saveUpdatedCells();
 
   const [year, month, _] = date.split("-");
-  const col = 1 + 13 * (parseInt(year) - 2022) + parseInt(month);
+  const col = 1 + 13 * (parseInt(year) - start_year) + parseInt(month);
   return [row, col];
 }
 

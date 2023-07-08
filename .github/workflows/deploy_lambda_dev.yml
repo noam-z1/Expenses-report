@@ -11,6 +11,7 @@ env:
   GOOGLE_SHEETS_PRIVATE_KEY: ${{ secrets.GOOGLE_SHEETS_PRIVATE_KEY }}
   GOOGLE_SHEETS_URL: ${{ vars.GOOGLE_SHEETS_URL }}
   SPREADSHEET_NAME: ${{ vars.SPREADSHEET_NAME }}
+  FILE_START_YEAR: ${{ vars.FILE_START_YEAR }}
 
 jobs:
   deploy_lambda_dev:
