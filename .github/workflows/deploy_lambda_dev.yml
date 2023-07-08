@@ -16,7 +16,7 @@ env:
 jobs:
   deploy_lambda_dev:
     runs-on: ubuntu-latest
-    environment: dev
+    environment: DEV
 
     steps:
       - uses: actions/checkout@v3
