@@ -63,6 +63,7 @@ export default function ExpenseAddFrom(
     const minFormYear = config.app.FORM_YEAR_START;
     return (
         <>
+            <h2>{config}</h2>
             <h1> My Form</h1>
             <div className="expense-input" id="expense-name">
                 <label>Name</label>
