@@ -14,6 +14,7 @@ export default function ExpenseAddFrom(
 
     const [expenseCategories, setExpensesCategories] = useState(Array<string>());
     const [expensesCategoriesValue, setExpenseCategoryChoice] = useState('');
+    const [secondExpensesCategoriesValue, setSecondExpenseCategoryChoice] = useState('');
     const config = useConfig();
 
     let results: string[] = [];
@@ -41,6 +42,7 @@ export default function ExpenseAddFrom(
         const value = expenseValue.current!.value ?? '';
         const date = expenseDate.current!.value ?? '';
         const category = expensesCategoriesValue ?? '';
+        const secondCategory = secondExpensesCategoriesValue ?? '';
 
         if (name === '' || value === '' || category === '') {
             return;
@@ -58,6 +60,7 @@ export default function ExpenseAddFrom(
         expenseValue.current!.value = '';
         expenseDate.current!.value = moment().format("YYYY-MM-DD");
         setExpenseCategoryChoice('');
+        setSecondExpenseCategoryChoice('');
     }
 
     const [showAddCategory, setShowAddCategory] = useState(false);
@@ -89,8 +92,7 @@ export default function ExpenseAddFrom(
                 </div>)}
                 {showAddCategory && (
                 <div id="new-category">
-                    <label>New Category</label>
-                    <input type="text" />
+                    <ExpensesCategories expenseCategories={expenseCategories} expensesCategoriesValue={secondExpensesCategoriesValue} setExpenseCategoryChoice={setSecondExpenseCategoryChoice} />
                 </div>)}
             </div>
             <div className="expense-input" id="expense-value">
