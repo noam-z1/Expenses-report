@@ -11,10 +11,13 @@ export default function ExpenseAddFrom(
     const expenseName = useRef<HTMLInputElement>(null);
     const expenseValue = useRef<HTMLInputElement>(null);
     const expenseDate = useRef<HTMLInputElement>(null);
+    const newCategoryCheckbox = useRef<HTMLInputElement>(null);
 
     const [expenseCategories, setExpensesCategories] = useState(Array<string>());
     const [expensesCategoriesValue, setExpenseCategoryChoice] = useState('');
     const [secondExpensesCategoriesValue, setSecondExpenseCategoryChoice] = useState('');
+    const [showAddCategory, setShowAddCategory] = useState(false);
+    const [hasPickedCategory, setHasPickedCategory] = useState(false);
     const config = useConfig();
 
     let results: string[] = [];
@@ -73,10 +76,6 @@ export default function ExpenseAddFrom(
         setExpenseCategoryChoice('');
         setSecondExpenseCategoryChoice('');
     }
-
-    const [showAddCategory, setShowAddCategory] = useState(false);
-    const [hasPickedCategory, setHasPickedCategory] = useState(false);
-    const newCategoryCheckbox = useRef<HTMLInputElement>(null);
 
     function handleCheckboxChange() {
         setShowAddCategory(!showAddCategory);
