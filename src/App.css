@@ -58,7 +58,12 @@ label {
 
 .expense-input {
   max-height: 22%;
-  overflow:auto;
+  overflow: auto;
+}
+
+#add-category-checkbox {
+  display: flex;
+  padding: 0 10%;
 }
 
 input, select{
