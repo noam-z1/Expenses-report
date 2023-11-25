@@ -60,6 +60,18 @@ export default function ExpenseAddFrom(
         setExpenseCategoryChoice('');
     }
 
+    const [showAddCategory, setShowAddCategory] = useState(false);
+    const [hasPickedCategory, setHasPickedCategory] = useState(false);
+    const newCategoryCheckbox = useRef<HTMLInputElement>(null);
+
+    function handleCheckboxChange() {
+        setShowAddCategory(!showAddCategory);
+    }
+
+    function handleCategoryChange(value: string) {
+        setHasPickedCategory(value !== '');
+    }
+
     const minFormYear = config.app.FORM_YEAR_START;
     return (
         <>
@@ -69,8 +81,20 @@ export default function ExpenseAddFrom(
                 <input type="text" ref={expenseName} />
             </div>
             <div className="expense-input" id="expense-category">
-                <ExpensesCategories expenseCategories={expenseCategories} expensesCategoriesValue={expensesCategoriesValue} setExpenseCategoryChoice={setExpenseCategoryChoice} />
+            <ExpensesCategories expenseCategories={expenseCategories} expensesCategoriesValue={expensesCategoriesValue} setExpenseCategoryChoice={(value) => { setExpenseCategoryChoice(value); handleCategoryChange(value); }} />
             </div>
+            {hasPickedCategory && (
+                <div className="expense-input" id="add-category-checkbox">
+                    <label>Add Another category?</label>
+                    <input type="checkbox" ref={newCategoryCheckbox} onChange={handleCheckboxChange} />
+                </div>
+            )}
+            {showAddCategory && (
+                <div className="expense-input" id="new-category">
+                    <label>New Category</label>
+                    <input type="text" />
+                </div>
+            )}
             <div className="expense-input" id="expense-value">
                 <label>Sum</label>
                 <input type="number" min="0" ref={expenseValue} />
