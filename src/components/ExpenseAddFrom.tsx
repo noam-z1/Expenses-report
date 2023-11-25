@@ -53,6 +53,17 @@ export default function ExpenseAddFrom(
             category,
             date
         };
+        if (secondCategory)
+            {
+                const expense2: Expense = {
+                    name,
+                    value: parseFloat(value),
+                    category,
+                    date
+                };
+                setAddExpenseRequest(expense2);
+                setSecondExpenseCategoryChoice('');
+            }
 
         setAddExpenseRequest(expense);
 
@@ -60,7 +71,6 @@ export default function ExpenseAddFrom(
         expenseValue.current!.value = '';
         expenseDate.current!.value = moment().format("YYYY-MM-DD");
         setExpenseCategoryChoice('');
-        setSecondExpenseCategoryChoice('');
     }
 
     const [showAddCategory, setShowAddCategory] = useState(false);
