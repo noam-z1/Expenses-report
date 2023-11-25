@@ -86,18 +86,6 @@ export default function ExpenseAddFrom(
         setHasPickedCategory(value !== '');
     }
 
-    const [showAddCategory, setShowAddCategory] = useState(false);
-    const [hasPickedCategory, setHasPickedCategory] = useState(false);
-    const newCategoryCheckbox = useRef<HTMLInputElement>(null);
-
-    function handleCheckboxChange() {
-        setShowAddCategory(!showAddCategory);
-    }
-
-    function handleCategoryChange(value: string) {
-        setHasPickedCategory(value !== '');
-    }
-
     const minFormYear = config.app.FORM_YEAR_START;
     return (
         <>
