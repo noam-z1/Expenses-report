@@ -71,6 +71,19 @@ export default function ExpenseAddFrom(
         expenseValue.current!.value = '';
         expenseDate.current!.value = moment().format("YYYY-MM-DD");
         setExpenseCategoryChoice('');
+        setSecondExpenseCategoryChoice('');
+    }
+
+    const [showAddCategory, setShowAddCategory] = useState(false);
+    const [hasPickedCategory, setHasPickedCategory] = useState(false);
+    const newCategoryCheckbox = useRef<HTMLInputElement>(null);
+
+    function handleCheckboxChange() {
+        setShowAddCategory(!showAddCategory);
+    }
+
+    function handleCategoryChange(value: string) {
+        setHasPickedCategory(value !== '');
     }
 
     const [showAddCategory, setShowAddCategory] = useState(false);
