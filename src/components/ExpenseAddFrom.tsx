@@ -82,18 +82,16 @@ export default function ExpenseAddFrom(
             </div>
             <div className="expense-input" id="expense-category">
                 <ExpensesCategories expenseCategories={expenseCategories} expensesCategoriesValue={expensesCategoriesValue} setExpenseCategoryChoice={(value) => { setExpenseCategoryChoice(value); handleCategoryChange(value); }} />
-            {hasPickedCategory && (
+                {hasPickedCategory && (
                 <div className="expense-input" id="add-category-checkbox">
                     <label>Add Another category?</label>
                     <input type="checkbox" ref={newCategoryCheckbox} onChange={handleCheckboxChange} />
-                </div>
-            )}
-            {showAddCategory && (
+                </div>)}
+                {showAddCategory && (
                 <div className="expense-input" id="new-category">
                     <label>New Category</label>
                     <input type="text" />
-                </div>
-            )}
+                </div>)}
             </div>
             <div className="expense-input" id="expense-value">
                 <label>Sum</label>

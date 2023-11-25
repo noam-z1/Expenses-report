@@ -56,13 +56,8 @@ label {
   margin-bottom: 8px;
 }
 
-#add-category-checkbox label {
-  display: flex;
-  align-items: center;
-}
-
-#add-category-checkbox input {
-  margin-left: 5px; /* Adjust the margin as needed */
+.expense-input {
+  max-height: 10%;
 }
 
 input, select{
