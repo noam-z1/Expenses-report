@@ -21,7 +21,6 @@ provider:
     SERVERLESS_PROJECT: ${self:service}
     SERVERLESS_REGION: ${self:provider.region}
     SERVERLESS_STAGE: ${self:provider.stage}
-    FILE_START_YEAR: ${env:FILE_START_YEAR}
 
     APP_DIST_URL: ${self:custom.distBucketUrl.${self:provider.region}, self:custom.distBucketUrl.default}
     APP_PUBLIC_URL: ${self:custom.distBucketUrl.${self:provider.region}, self:custom.distBucketUrl.default}

@@ -18,6 +18,7 @@ async function getSheet(): Promise<GoogleSpreadsheetWorksheet> {
 }
 
 async function getRelevantCell(category: string, date: string): Promise<number[]> {
+  console.log(process)
   const start_year = parseInt(process.env.FILE_START_YEAR || "2022");
   const sheet = await getSheet();
 
