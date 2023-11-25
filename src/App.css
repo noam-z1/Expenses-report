@@ -57,7 +57,8 @@ label {
 }
 
 .expense-input {
-  max-height: 10%;
+  max-height: 22%;
+  overflow:auto;
 }
 
 input, select{
