@@ -11,23 +11,27 @@ env:
   GOOGLE_SHEETS_PRIVATE_KEY: ${{ secrets.GOOGLE_SHEETS_PRIVATE_KEY }}
   GOOGLE_SHEETS_URL: ${{ vars.GOOGLE_SHEETS_URL }}
   SPREADSHEET_NAME: ${{ vars.SPREADSHEET_NAME }}
+  FILE_START_YEAR: ${{ vars.FILE_START_YEAR }}
 
 jobs:
   deploy_lambda_dev:
     runs-on: ubuntu-latest
+    environment: DEV
 
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 14.x
+          node-version: 18.x
           cache: "npm"
       - name: Upgrade NPM
         run: npm install -g npm
       - run: npm ci
-      - name: deploy
-        run: npx serverless deploy --stage dev > /dev/null 2>&1
+      - name: serverless deploy
+        uses: serverless/github-action@v3.1
+        with:
+          args: deploy
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

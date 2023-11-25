@@ -59,6 +59,7 @@ functions:
       GOOGLE_SHEETS_PRIVATE_API_KEY: ${env:GOOGLE_SHEETS_PRIVATE_API_KEY}
       SPREADSHEET_NAME: ${env:SPREADSHEET_NAME}
       GOOGLE_SHEETS_URL: ${env:GOOGLE_SHEETS_URL}
+      FILE_START_YEAR: ${env:FILE_START_YEAR}
     events:
       - http:
           path: /Expense

@@ -60,6 +60,7 @@ export default function ExpenseAddFrom(
         setExpenseCategoryChoice('');
     }
 
+    const minFormYear = config.app.FORM_YEAR_START;
     return (
         <>
             <h1> My Form</h1>
@@ -76,7 +77,7 @@ export default function ExpenseAddFrom(
             </div>
             <div className="expense-input" id="expense-value">
                 <label>Date</label>
-                <input type="date" ref={expenseDate} min="2023-01-01" defaultValue={moment().format("YYYY-MM-DD")} />
+                <input type="date" ref={expenseDate} min={`${minFormYear}-01-01`} defaultValue={moment().format("YYYY-MM-DD")} />
             </div>
             <button onClick={sendForm}>Add expense</button>
         </>
