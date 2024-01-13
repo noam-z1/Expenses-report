@@ -77,6 +77,7 @@ export default function ExpenseAddFrom(
         setExpenseCategoryChoice('');
         setSecondExpenseCategoryChoice('');
         setCheckboxChecked(false);
+        setShowAddCategory(false);
     }
 
     function handleCheckboxChange() {
