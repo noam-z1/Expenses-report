@@ -18,6 +18,7 @@ export default function ExpenseAddFrom(
     const [secondExpensesCategoriesValue, setSecondExpenseCategoryChoice] = useState('');
     const [showAddCategory, setShowAddCategory] = useState(false);
     const [hasPickedCategory, setHasPickedCategory] = useState(false);
+    const [checkboxChecked, setCheckboxChecked] = useState(false);
     const config = useConfig();
 
     let results: string[] = [];
@@ -75,7 +76,7 @@ export default function ExpenseAddFrom(
         expenseDate.current!.value = moment().format("YYYY-MM-DD");
         setExpenseCategoryChoice('');
         setSecondExpenseCategoryChoice('');
-        setShowAddCategory(false);
+        setCheckboxChecked(false);
     }
 
     function handleCheckboxChange() {
@@ -99,7 +100,7 @@ export default function ExpenseAddFrom(
                 {hasPickedCategory && (
                 <div id="add-category-checkbox">
                     <label>Add Another category?</label>
-                    <input type="checkbox" ref={newCategoryCheckbox} onChange={handleCheckboxChange} />
+                    <input type="checkbox" ref={newCategoryCheckbox} onChange={handleCheckboxChange} checked={checkboxChecked} />
                 </div>)}
                 {showAddCategory && (
                 <div id="new-category">
