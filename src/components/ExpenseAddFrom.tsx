@@ -6,7 +6,7 @@ import ExpensesCategories from './ExpensesCategories';
 import useConfig from './useConfig';
 
 export default function ExpenseAddFrom(
-    { setAddExpenseRequest }: { setAddExpenseRequest: Dispatch<SetStateAction<Expense>> }
+    { setAddExpensesRequest }: { setAddExpensesRequest: Dispatch<SetStateAction<Expense[]>> }
 ) {
     const expenseName = useRef<HTMLInputElement>(null);
     const expenseValue = useRef<HTMLInputElement>(null);
@@ -57,6 +57,7 @@ export default function ExpenseAddFrom(
             category,
             date
         };
+        let expenses = [expense];
         if (secondCategory)
             {
                 const expense2: Expense = {
@@ -65,11 +66,11 @@ export default function ExpenseAddFrom(
                     category,
                     date
                 };
-                setAddExpenseRequest(expense2);
+                expenses.push(expense2)
                 setSecondExpenseCategoryChoice('');
             }
 
-        setAddExpenseRequest(expense);
+        setAddExpensesRequest(expenses);
 
         expenseName.current!.value = '';
         expenseValue.current!.value = '';
