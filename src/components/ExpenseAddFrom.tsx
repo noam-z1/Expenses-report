@@ -75,6 +75,7 @@ export default function ExpenseAddFrom(
         expenseDate.current!.value = moment().format("YYYY-MM-DD");
         setExpenseCategoryChoice('');
         setSecondExpenseCategoryChoice('');
+        handleCheckboxChange();
     }
 
     function handleCheckboxChange() {
