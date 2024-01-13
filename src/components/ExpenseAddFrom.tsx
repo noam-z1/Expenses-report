@@ -80,6 +80,7 @@ export default function ExpenseAddFrom(
     }
 
     function handleCheckboxChange() {
+        setCheckboxChecked(!checkboxChecked);
         setShowAddCategory(!showAddCategory);
     }
 
