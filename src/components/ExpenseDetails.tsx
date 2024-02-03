@@ -15,11 +15,9 @@ export default function ExpenseDetails({
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    nextArrow: <ArrowButton direction="next" />,
-    prevArrow: <ArrowButton direction="prev" />,
   };
 
-  if (expenses.length == 0) {
+  if (expenses.length === 0) {
     return (
       <>
         <h1>Expense Details</h1>
@@ -53,21 +51,7 @@ export default function ExpenseDetails({
             );
           })}
         </Slider>
-        {expenses.length > 1 && ( // Show controls only if there's more than one expense
-          <div className="carousel-controls">
-            <ArrowButton direction="prev" />
-            <ArrowButton direction="next" />
-          </div>
-        )}
       </div>
     </>
-  );
-}
-
-function ArrowButton({ direction, onClick }: { direction: string; onClick?: () => void }) {
-  return (
-    <button className={`carousel-arrow ${direction}`} onClick={onClick}>
-      {direction === 'next' ? 'Next' : 'Prev'}
-    </button>
   );
 }
