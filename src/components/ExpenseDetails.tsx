@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import Slider from 'react-slick';
 import { ExpenseData } from '../models/ExpenseData';
 import 'slick-carousel/slick/slick.css';
@@ -16,6 +16,7 @@ export default function ExpenseDetails({
     slidesToShow: 1,
     slidesToScroll: 1,
   };
+  const sliderRef = useRef<Slider>(null);
 
   if (expenses.length == 0) {
     return (
@@ -30,7 +31,7 @@ export default function ExpenseDetails({
     <>
       <h1>Expense Details</h1>
       <div className="carousel-container">
-        <Slider {...settings}>
+        <Slider ref={sliderRef} {...settings}>
           {expenses.map((expense, index) => {
             const date = new Date(expense.date);
             const month = date.getMonth() + 1;
@@ -51,6 +52,22 @@ export default function ExpenseDetails({
             );
           })}
         </Slider>
+        {expenses.length > 1 && (
+          <div className="carousel-controls">
+          <button
+            className="carousel-arrow prev"
+            onClick={() => sliderRef.current?.slickPrev()}
+          >
+            Prev
+          </button>
+          <button
+            className="carousel-arrow next"
+            onClick={() => sliderRef.current?.slickNext()}
+          >
+            Next
+          </button>
+        </div>
+        )}
       </div>
     </>
   );
