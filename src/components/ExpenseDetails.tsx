@@ -51,21 +51,7 @@ export default function ExpenseDetails({
             );
           })}
         </Slider>
-        {expenses.length > 1 && ( // Show controls only if there's more than one expense
-          <div className="carousel-controls">
-            <ArrowButton direction="prev" />
-            <ArrowButton direction="next" />
-          </div>
-        )}
       </div>
     </>
-  );
-}
-
-function ArrowButton({ direction, onClick }: { direction: string; onClick?: () => void }) {
-  return (
-    <button className={`carousel-arrow ${direction}`} onClick={onClick}>
-      {direction === 'next' ? 'Next' : 'Prev'}
-    </button>
   );
 }
