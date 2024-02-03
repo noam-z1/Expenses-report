@@ -18,6 +18,7 @@ export default function App() {
   const [expensesData, setExpensesData] = useState<ExpenseData[] | null>(null);
 
   useEffect(() => {
+    console.log("Hereeee")
     async function updateGoogleSheets(expenses: Expense[]): Promise<void> {
       setExpensesData([]);
       const responses = await Promise.all(
