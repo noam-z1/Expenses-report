@@ -70,6 +70,7 @@ export default function ExpenseAddFrom(
                 setSecondExpenseCategoryChoice('');
             }
 
+        console.log(`expenses - ${expenses}`)
         setAddExpensesRequest(expenses);
 
         expenseName.current!.value = '';

@@ -19,6 +19,7 @@ export default function App() {
 
   useEffect(() => {
     async function updateGoogleSheets(expenses: Expense[]): Promise<void> {
+      console.log(`expenses - ${expenses}`)
       const responses = await Promise.all(
         expenses.map(async (expense) => {
           try {
@@ -48,6 +49,7 @@ export default function App() {
           )
       );
       const noNullResponses = responses.filter((value) => value !== null) as ExpenseData[];
+      console.log(`expenses - ${noNullResponses}`)
       setExpensesData(noNullResponses)
     };
     updateGoogleSheets(addExpensesRequest)
