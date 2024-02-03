@@ -15,15 +15,17 @@ export default function ExpenseDetails({
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    nextArrow: <ArrowButton direction="next" />,
+    prevArrow: <ArrowButton direction="prev" />,
   };
 
   if (expenses.length == 0) {
     return (
       <>
-        <h1> Expense Details</h1>
+        <h1>Expense Details</h1>
         <label>Please Add Expense</label>
       </>
-    )
+    );
   }
 
   return (
@@ -47,9 +49,16 @@ export default function ExpenseDetails({
                 </>
                 )}
             </div>
-        )}
-        )}
+        )})}
       </Slider>
     </>
+  );
+}
+
+function ArrowButton({ direction, onClick }: { direction: string; onClick: () => void }) {
+  return (
+    <button className={`carousel-arrow ${direction}`} onClick={onClick}>
+      {direction === 'next' ? 'Next' : 'Prev'}
+    </button>
   );
 }
