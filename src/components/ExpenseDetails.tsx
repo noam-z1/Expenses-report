@@ -23,7 +23,7 @@ export default function ExpenseDetails({
     return (
       <>
         <h1>Expense Details</h1>
-        <label>Please Add Expenses empty</label>
+        <label>Loading data...</label>
       </>
     );
   }
@@ -32,7 +32,7 @@ export default function ExpenseDetails({
     return (
       <>
         <h1>Expense Details</h1>
-        <label>Please Add Expenses</label>
+        <label>Please Add Expense</label>
       </>
     );
   }
