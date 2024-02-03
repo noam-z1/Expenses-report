@@ -32,6 +32,7 @@ export default function App() {
               }
             );
             const { oldValue, newValue } = response.data;
+            console.log(`response - ${JSON.stringify(response)}`)
             const expenseData: ExpenseData = {
               category: expense.category,
               date: expense.date,
