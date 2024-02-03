@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import Slider from 'react-slick';
 import { ExpenseData } from '../models/ExpenseData';
 import 'slick-carousel/slick/slick.css';
@@ -15,14 +15,15 @@ export default function ExpenseDetails({
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    nextArrow: <ArrowButton direction="next" />,
+    prevArrow: <ArrowButton direction="prev" />,
   };
-  const sliderRef = useRef<Slider>(null);
 
-  if (expenses.length == 0) {
+  if (expenses.length === 0) {
     return (
       <>
         <h1>Expense Details</h1>
-        <label>Please Add Expense</label>
+        <label>Please Add Expenses</label>
       </>
     );
   }
@@ -30,8 +31,7 @@ export default function ExpenseDetails({
   return (
     <>
       <h1>Expense Details</h1>
-      <div className="carousel-container">
-        <Slider ref={sliderRef} {...settings}>
+      <Slider {...settings}>
           {expenses.map((expense, index) => {
             const date = new Date(expense.date);
             const month = date.getMonth() + 1;
@@ -52,23 +52,14 @@ export default function ExpenseDetails({
             );
           })}
         </Slider>
-        {expenses.length > 1 && (
-          <div className="carousel-controls">
-          <button
-            className="carousel-arrow prev"
-            onClick={() => sliderRef.current?.slickPrev()}
-          >
-            Prev
-          </button>
-          <button
-            className="carousel-arrow next"
-            onClick={() => sliderRef.current?.slickNext()}
-          >
-            Next
-          </button>
-        </div>
-        )}
-      </div>
     </>
+  );
+}
+
+function ArrowButton({ direction, onClick }: { direction: string; onClick: () => void }) {
+  return (
+    <button className={`carousel-arrow ${direction}`} onClick={onClick}>
+      {direction === 'next' ? 'Next' : 'Prev'}
+    </button>
   );
 }
