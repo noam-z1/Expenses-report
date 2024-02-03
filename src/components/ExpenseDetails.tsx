@@ -17,6 +17,7 @@ export default function ExpenseDetails({
     slidesToScroll: 1,
     nextArrow: <ArrowButton direction="next" />,
   };
+  console.log(`${expenses}`)
 
   if (expenses.length == 0) {
     return (
