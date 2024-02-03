@@ -63,7 +63,7 @@ export default function ExpenseAddFrom(
                 const expense2: Expense = {
                     name,
                     value: parseFloat(value),
-                    category,
+                    category: secondCategory,
                     date
                 };
                 expenses.push(expense2)
