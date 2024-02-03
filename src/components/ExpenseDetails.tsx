@@ -31,32 +31,37 @@ export default function ExpenseDetails({
   return (
     <>
       <h1>Expense Details</h1>
-      <div className="carousel-container">
-        <Slider {...settings}>
-          {expenses.map((expense, index) => {
-              const date = new Date(expense.date)
+      {expenses.length > 1 && ( // Show controls only if there's more than one expense
+        <div className="carousel-container">
+          <Slider {...settings}>
+            {expenses.map((expense, index) => {
+              const date = new Date(expense.date);
               const month = date.getMonth() + 1;
               const year = date.getFullYear();
               return (
-              <div key={index} className="expense-details-item">
+                <div key={index} className="expense-details-item">
                   <label>Expense category</label>
                   <h3>{expense.category}</h3>
                   <label>Expense month</label>
                   <h3>{`${month}/${year}`}</h3>
                   {expense.oldValue !== undefined && (
-                  <>
+                    <>
                       <h3>Old value - {expense.oldValue}</h3>
                       <h3>New value - {expense.newValue}</h3>
-                  </>
+                    </>
                   )}
-              </div>
-          )})}
-        </Slider>
-        <div className="carousel-controls">
-          <ArrowButton direction="prev" />
-          <ArrowButton direction="next" />
+                </div>
+              );
+            })}
+          </Slider>
+          {expenses.length > 1 && ( // Show controls only if there's more than one expense
+            <div className="carousel-controls">
+              <ArrowButton direction="prev" />
+              <ArrowButton direction="next" />
+            </div>
+          )}
         </div>
-      </div>
+      )}
     </>
   );
 }
