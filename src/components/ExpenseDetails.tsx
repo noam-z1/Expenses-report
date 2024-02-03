@@ -7,7 +7,7 @@ import 'slick-carousel/slick/slick-theme.css';
 export default function ExpenseDetails({
   expenses,
 }: {
-  expenses: ExpenseData[];
+  expenses: ExpenseData[] | null;
 }) {
   const settings = {
     dots: true,
@@ -18,6 +18,15 @@ export default function ExpenseDetails({
     nextArrow: <ArrowButton direction="next" />,
   };
   console.log(`expenses - ${expenses}`)
+
+  if (expenses === null){
+    return (
+      <>
+        <h1>Expense Details</h1>
+        <label>Please Add Expenses empty</label>
+      </>
+    );
+  }
 
   if (expenses.length == 0) {
     return (

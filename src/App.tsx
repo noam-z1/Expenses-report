@@ -15,10 +15,11 @@ import { ExpenseData } from "./models/ExpenseData";
 export default function App() {
   const config = useConfig();
   const [addExpensesRequest, setAddExpensesRequest] = useState([] as Expense[]);
-  const [expensesData, setExpensesData] = useState([] as ExpenseData[]);
+  const [expensesData, setExpensesData] = useState<ExpenseData[] | null>(null);
 
   useEffect(() => {
     async function updateGoogleSheets(expenses: Expense[]): Promise<void> {
+      setExpensesData([]);
       const responses = await Promise.all(
         expenses.map(async (expense) => {
           try {
