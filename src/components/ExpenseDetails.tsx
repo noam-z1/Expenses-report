@@ -16,7 +16,6 @@ export default function ExpenseDetails({
     slidesToShow: 1,
     slidesToScroll: 1,
     nextArrow: <ArrowButton direction="next" />,
-    prevArrow: <ArrowButton direction="prev" />,
   };
 
   if (expenses.length === 0) {
@@ -59,7 +58,7 @@ export default function ExpenseDetails({
 function ArrowButton({ direction, onClick }: { direction: string; onClick: () => void }) {
   return (
     <button className={`carousel-arrow ${direction}`} onClick={onClick}>
-      {direction === 'next' ? 'Next' : 'Prev'}
+      {'Next'}
     </button>
   );
 }
