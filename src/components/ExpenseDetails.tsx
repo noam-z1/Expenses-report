@@ -18,7 +18,7 @@ export default function ExpenseDetails({
     nextArrow: <ArrowButton direction="next" />,
   };
 
-  if (expenses.length === 0) {
+  if (expenses.length == 0) {
     return (
       <>
         <h1>Expense Details</h1>
@@ -55,7 +55,7 @@ export default function ExpenseDetails({
   );
 }
 
-function ArrowButton({ direction, onClick }: { direction: string; onClick: () => void }) {
+function ArrowButton({ direction, onClick }: { direction: string; onClick?: () => void }) {
   return (
     <button className={`carousel-arrow ${direction}`} onClick={onClick}>
       {'Next'}
