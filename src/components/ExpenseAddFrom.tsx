@@ -58,7 +58,7 @@ export default function ExpenseAddFrom(
             date
         };
         let expenses = [expense];
-        if (secondCategory)
+        if (secondCategory && secondCategory != category)
             {
                 const expense2: Expense = {
                     name,
