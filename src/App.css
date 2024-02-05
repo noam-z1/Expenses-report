@@ -56,6 +56,16 @@ label {
   margin-bottom: 8px;
 }
 
+.expense-input {
+  max-height: 22%;
+  overflow: auto;
+}
+
+#add-category-checkbox {
+  display: flex;
+  padding: 0 10%;
+}
+
 input, select{
   width: 80%;
   border: 1px solid #ccc;

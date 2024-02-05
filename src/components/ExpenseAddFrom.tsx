@@ -6,14 +6,19 @@ import ExpensesCategories from './ExpensesCategories';
 import useConfig from './useConfig';
 
 export default function ExpenseAddFrom(
-    { setAddExpenseRequest }: { setAddExpenseRequest: Dispatch<SetStateAction<Expense>> }
+    { setAddExpensesRequest }: { setAddExpensesRequest: Dispatch<SetStateAction<Expense[]>> }
 ) {
     const expenseName = useRef<HTMLInputElement>(null);
     const expenseValue = useRef<HTMLInputElement>(null);
     const expenseDate = useRef<HTMLInputElement>(null);
+    const newCategoryCheckbox = useRef<HTMLInputElement>(null);
 
     const [expenseCategories, setExpensesCategories] = useState(Array<string>());
     const [expensesCategoriesValue, setExpenseCategoryChoice] = useState('');
+    const [secondExpensesCategoriesValue, setSecondExpenseCategoryChoice] = useState('');
+    const [showAddCategory, setShowAddCategory] = useState(false);
+    const [hasPickedCategory, setHasPickedCategory] = useState(false);
+    const [checkboxChecked, setCheckboxChecked] = useState(false);
     const config = useConfig();
 
     let results: string[] = [];
@@ -41,6 +46,7 @@ export default function ExpenseAddFrom(
         const value = expenseValue.current!.value ?? '';
         const date = expenseDate.current!.value ?? '';
         const category = expensesCategoriesValue ?? '';
+        const secondCategory = secondExpensesCategoriesValue ?? '';
 
         if (name === '' || value === '' || category === '') {
             return;
@@ -51,13 +57,38 @@ export default function ExpenseAddFrom(
             category,
             date
         };
+        let expenses = [expense];
+        if (secondCategory && secondCategory != category)
+            {
+                const expense2: Expense = {
+                    name,
+                    value: parseFloat(value),
+                    category: secondCategory,
+                    date
+                };
+                expenses.push(expense2)
+                setSecondExpenseCategoryChoice('');
+            }
 
-        setAddExpenseRequest(expense);
+        setAddExpensesRequest(expenses);
 
         expenseName.current!.value = '';
         expenseValue.current!.value = '';
         expenseDate.current!.value = moment().format("YYYY-MM-DD");
         setExpenseCategoryChoice('');
+        setSecondExpenseCategoryChoice('');
+        setCheckboxChecked(false);
+        setShowAddCategory(false);
+        setHasPickedCategory(false);
+    }
+
+    function handleCheckboxChange() {
+        setCheckboxChecked(!checkboxChecked);
+        setShowAddCategory(!showAddCategory);
+    }
+
+    function handleCategoryChange(value: string) {
+        setHasPickedCategory(value !== '');
     }
 
     const minFormYear = config.app.FORM_YEAR_START;
@@ -69,7 +100,16 @@ export default function ExpenseAddFrom(
                 <input type="text" ref={expenseName} />
             </div>
             <div className="expense-input" id="expense-category">
-                <ExpensesCategories expenseCategories={expenseCategories} expensesCategoriesValue={expensesCategoriesValue} setExpenseCategoryChoice={setExpenseCategoryChoice} />
+                <ExpensesCategories expenseCategories={expenseCategories} expensesCategoriesValue={expensesCategoriesValue} setExpenseCategoryChoice={(value) => { setExpenseCategoryChoice(value); handleCategoryChange(value); }} />
+                {hasPickedCategory && (
+                <div id="add-category-checkbox">
+                    <label>Add Another category?</label>
+                    <input type="checkbox" ref={newCategoryCheckbox} onChange={handleCheckboxChange} checked={checkboxChecked} />
+                </div>)}
+                {showAddCategory && (
+                <div id="new-category">
+                    <ExpensesCategories expenseCategories={expenseCategories} expensesCategoriesValue={secondExpensesCategoriesValue} setExpenseCategoryChoice={setSecondExpenseCategoryChoice} />
+                </div>)}
             </div>
             <div className="expense-input" id="expense-value">
                 <label>Sum</label>

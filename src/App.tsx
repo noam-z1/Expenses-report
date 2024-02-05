@@ -14,46 +14,43 @@ import { ExpenseData } from "./models/ExpenseData";
  */
 export default function App() {
   const config = useConfig();
-  const [addExpenseRequest, setAddExpenseRequest] = useState({} as Expense);
-  const [expenseData, setExpenseData] = useState({} as ExpenseData);
+  const [addExpensesRequest, setAddExpensesRequest] = useState([] as Expense[]);
+  const [expensesData, setExpensesData] = useState<ExpenseData[] | null>([]);
 
   useEffect(() => {
-    async function updateGoogleSheets(expense: Expense): Promise<void> {
-      try {
-        const response = await axios.post(
-          `${config.app.URL}/Expense`,
-          { ...expense },
-          {
-            headers: {
-              "Content-Type": "application/json",
+    async function updateGoogleSheets(expenses: Expense[]): Promise<void> {
+      setExpensesData(null);
+      let responses = [] as ExpenseData[];
+      for (const expense of expenses) {
+        try {
+          const response = await axios.post(
+            `${config.app.URL}/Expense`,
+            { ...expense },
+            {
+              headers: {
+                "Content-Type": "application/json",
+              }
             }
+          );
+          const { oldValue, newValue } = response.data;
+          const expenseData: ExpenseData = {
+            category: expense.category,
+            date: expense.date,
+            oldValue,
+            newValue,
           }
-        );
-        const { oldValue, newValue } = response.data;
-        const expenseData: ExpenseData = {
-          category: expense.category,
-          date: expense.date,
-          oldValue,
-          newValue,
+  
+          responses.push(expenseData);
+        } catch (err) {
+          console.log(JSON.stringify(err))
         }
-
-        setExpenseData(expenseData);
-      } catch (err) {
-        console.log(JSON.stringify(err))
       }
-
+      const noNullResponses = responses.filter((value) => value !== null) as ExpenseData[];
+      setExpensesData(noNullResponses)
     };
+    updateGoogleSheets(addExpensesRequest)
 
-    if (Object.keys(addExpenseRequest).length > 0) {
-      setExpenseData({
-        category: addExpenseRequest.category,
-        date: addExpenseRequest.date
-      })
-
-      updateGoogleSheets(addExpenseRequest)
-    };
-
-  }, [addExpenseRequest])
+  }, [addExpensesRequest])
 
   return (
     <div className="App">
@@ -61,10 +58,10 @@ export default function App() {
         <h1 className="App-title">Noam & Roni's {config.app.TITLE}</h1>
       </header>
       <div id="expenses-form">
-        <ExpenseAddFrom setAddExpenseRequest={setAddExpenseRequest} />
+        <ExpenseAddFrom setAddExpensesRequest={setAddExpensesRequest} />
       </div>
       <div id="expense-details">
-        <ExpenseDetails expense={expenseData} />
+        <ExpenseDetails expenses={expensesData} />
       </div>
     </div>
   );
