@@ -19,12 +19,10 @@ export default function App() {
 
   useEffect(() => {
     async function updateGoogleSheets(expenses: Expense[]): Promise<void> {
-      console.log(JSON.stringify(expenses))
       setExpensesData(null);
       const responses = await Promise.all(
         expenses.map(async (expense) => {
           try {
-            console.log(JSON.stringify(expense))
             const response = await axios.post(
               `${config.app.URL}/Expense`,
               { ...expense },
@@ -34,7 +32,6 @@ export default function App() {
                 }
               }
             );
-            console.log(JSON.stringify(response))
             const { oldValue, newValue } = response.data;
             const expenseData: ExpenseData = {
               category: expense.category,
@@ -42,7 +39,6 @@ export default function App() {
               oldValue,
               newValue,
             }
-            console.log(JSON.stringify(expenseData))
     
             return expenseData;
           } catch (err) {
@@ -52,7 +48,6 @@ export default function App() {
         }
           )
       );
-      console.log(JSON.stringify(responses))
       const noNullResponses = responses.filter((value) => value !== null) as ExpenseData[];
       setExpensesData(noNullResponses)
     };
