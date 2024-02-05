@@ -85,11 +85,8 @@ export const addExpense = async (event: APIGatewayEvent, _context: Context): Pro
         "Content-Type": "text/html",
       },
       body: JSON.stringify({
-        category,
         oldValue: initialValue,
         newValue,
-        row,
-        col,
       }),
     };
   } catch (err) {
