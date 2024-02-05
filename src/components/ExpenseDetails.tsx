@@ -17,7 +17,6 @@ export default function ExpenseDetails({
     slidesToScroll: 1,
     nextArrow: <ArrowButton direction="next" />,
   };
-  console.log(`expenses - ${expenses}`)
 
   if (expenses === null){
     return (
@@ -36,6 +35,7 @@ export default function ExpenseDetails({
       </>
     );
   }
+  console.log(`expenses - ${JSON.stringify(expenses)}`)
 
   return (
     <>
