@@ -34,6 +34,7 @@ export default function App() {
                 }
               }
             );
+            console.log(JSON.stringify(response))
             const { oldValue, newValue } = response.data;
             const expenseData: ExpenseData = {
               category: expense.category,
@@ -41,6 +42,7 @@ export default function App() {
               oldValue,
               newValue,
             }
+            console.log(JSON.stringify(expenseData))
     
             return expenseData;
           } catch (err) {
