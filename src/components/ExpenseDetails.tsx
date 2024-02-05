@@ -35,7 +35,6 @@ export default function ExpenseDetails({
       </>
     );
   }
-  console.log(`expenses - ${JSON.stringify(expenses)}`)
 
   return (
     <>
