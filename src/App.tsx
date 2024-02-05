@@ -24,6 +24,7 @@ export default function App() {
       const responses = await Promise.all(
         expenses.map(async (expense) => {
           try {
+            console.log(JSON.stringify(expense))
             const response = await axios.post(
               `${config.app.URL}/Expense`,
               { ...expense },
